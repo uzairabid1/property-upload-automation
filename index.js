@@ -117,6 +117,8 @@ async function fillFields(page, directory){
     const DESC_SELECTOR = "//textarea[@placeholder='Enter additional description']";
     const STATUS_SELECT_SELECTOR = `//span[.='Status']/parent::div/following-sibling::div[1]/div/div/div`;
     const STATUS_OPTION_SELECTOR = 'ul.options-list>li:nth-child(1)';
+    const PROJECT_SELECT_SELECTOR = "//span[.='Project type']/parent::div/following-sibling::div[1]/div/div/div";
+    const PROJECT_OPTION_SELECTOR = "ul.options-list>li:nth-child(1)";
     const LIVO_SELECTOR = "//span[.='livo.ge']/parent::span/parent::div/preceding-sibling::div/button";
     const SERVICE_SELECTOR = `(//label/div/div/button[@role='checkbox'])[${(parseInt(infoData.vipStatus) + 1).toString()}]`;
 
@@ -153,10 +155,14 @@ async function fillFields(page, directory){
     await typeText(page, 'XPATH', TOTAL_PRICE_SELECTOR, infoData.priceUSD);
     // Type text in description
     await typeText(page, 'XPATH', DESC_SELECTOR, infoData.description);
-    // Click on the select button
+    // Click on the status select button
     await clickButton(page, 'XPATH', STATUS_SELECT_SELECTOR);
     // Click on the first list option
     await clickButton(page, 'CSS', STATUS_OPTION_SELECTOR);
+    // Click on the project select button
+    await clickButton(page, 'XPATH', PROJECT_SELECT_SELECTOR);
+    // Click on the first list option
+    await clickButton(page, 'CSS', PROJECT_OPTION_SELECTOR);
     // Click on the livo checkbox
     await clickButton(page, 'XPATH', LIVO_SELECTOR);
     // Click on the service
